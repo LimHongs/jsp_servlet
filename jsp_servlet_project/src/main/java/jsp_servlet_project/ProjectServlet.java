@@ -11,33 +11,24 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class ProjectServlet
  */
 @WebServlet("/ProjectServlet")
-// mvc 패턴에서 model(데이터베이스름 담고있는그릇)
-// mvc 패턴에서 view(jsp -> html,java)
+
 public class ProjectServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
 
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ProjectServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		System.out.println(username);
+		System.out.println(password);
+
+		request.setAttribute("username", username);
+		request.setAttribute("password", password);
+		// request에 저장한 변수데이터와 함께 페이지 이동한다
+		request.getRequestDispatcher("result.jsp").forward(request, response);
 	}
+
 
 }
